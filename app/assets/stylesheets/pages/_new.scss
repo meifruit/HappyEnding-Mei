@@ -4,7 +4,8 @@
   background-position: center;
   background-size: cover;
   object-fit: fill;
-  height: 750px;
+  height: 100vw;
+  width: 100vw;
 }
 
 .service-new {
@@ -13,7 +14,8 @@
   background-position: center;
   background-size: cover;
   object-fit: fill;
-  height: 750px;
+  height: 100vw;
+  width: 100vw;
 
 }
 
@@ -31,11 +33,6 @@
 
 // Smallest device
 @media (min-width: 100px) and (max-width: 575px) {
-  .booking-new {
-    width: 600px;
-    height: 1000px;
-  }
-
   .container-form {
     grid-template-columns: 1fr;
   }
