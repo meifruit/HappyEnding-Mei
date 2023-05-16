@@ -43,7 +43,6 @@ Service.all.each do |service|
       end_date: Date.today + rand(4..6)
     )
   end
-
 end
 
 puts "created #{Booking.count} bookings!"
