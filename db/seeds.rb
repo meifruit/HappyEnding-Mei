@@ -7,7 +7,7 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 4.times do
-  User.create!(
+  user = User.create!(
     name: Faker::Name.name,
     interest: Faker::Hobby.activity,
     location: Faker::Address.full_address,
@@ -16,5 +16,11 @@
     age: Faker::Number.decimal_part(digits: 2),
     email: Faker::Internet.email,
     password: "123456"
+  )
+  Service.create!(
+    user: user,
+    price: 100,
+    description: 'I am from meguro',
+    title: 'test'
   )
 end
