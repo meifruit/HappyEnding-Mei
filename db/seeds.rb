@@ -25,8 +25,8 @@ User.destroy_all
 
   service = Service.create!(
     user: user,
-    title: "hello",
-    description: "hello",
+    title: "Service title",
+    description: "Service descriptiton",
     price: rand(1..5)
   )
 end
