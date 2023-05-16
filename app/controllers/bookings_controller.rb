@@ -1,8 +1,11 @@
 class BookingsController < ApplicationController
-  
   def new
     @booking = Booking.new
     @service = Service.find(params[:service_id])
+  end
+
+  def index
+    @current_user_bookings = current_user.bookings
   end
 
   def create
@@ -17,8 +20,8 @@ class BookingsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
-  
-   def edit
+
+  def edit
     @booking = Booking.find(params[:id])
   end
 
@@ -32,11 +35,9 @@ class BookingsController < ApplicationController
     end
   end
 
-
   private
 
   def booking_params
     params.require(:booking).permit(:status, :user_id, :service_id, :start_date, :end_date)
   end
- 
 end
