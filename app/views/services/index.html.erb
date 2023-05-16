@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-services">
   <div>
   </div>
 
@@ -6,7 +6,7 @@
     <% @services.each do |service| %>
         <%= link_to service_path(service), class:'text-decoration-none' do%>
     <div class="card-service">
-      <div class="service-photo" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= service.photo.attached? ? cl_image_path(service.photo.key) : "https://media.licdn.com/dms/image/D5603AQFIDZtIJrZYqA/profile-displayphoto-shrink_800_800/0/1677032797435?e=1689811200&v=beta&t=85gnrndtPg1cfnRcKXSVP8Linzpi6wUw8Qt66bXW7Y8"%>)">
+      <div class="service-photo" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= service.photo.attached? ? cl_image_path(service.photo.key) : "https://i1.sndcdn.com/avatars-UaKAHbGfoeypwb8c-qkYTMg-t240x240.jpg"%>)">
       </div>
       <div class="card-info">
         <div class="header">
