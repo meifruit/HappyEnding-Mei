@@ -1,0 +1,12 @@
+<div class="container">
+  <% @services.each do |service| %>
+    <div class="card" style="width: 18rem;">
+      <%# <%= image_tag(service.user.photo.key) %>
+      <div class="card-body">
+        <h5 class="card-title"><%= service.title %></h5>
+        <p class="card-text"><%= service.price %></p>
+        <%= link_to "Details", service_path(service), class: 'btn btn-primary' %>
+      </div>
+    </div>
+  <% end %>
+</div>
