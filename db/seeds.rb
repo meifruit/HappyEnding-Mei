@@ -15,6 +15,6 @@
     description: Faker::Quote.most_interesting_man_in_the_world,
     age: Faker::Number.decimal_part(digits: 2),
     email: Faker::Internet.email,
-    password: 123456
+    password: "123456"
   )
 end
