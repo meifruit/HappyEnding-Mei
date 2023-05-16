@@ -4,9 +4,22 @@
   background-position: center;
   background-size: cover;
   object-fit: fill;
+  height: 750px;
+}
+
+.service-new {
+  background-image: url("rose.jpg") !important;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  object-fit: fill;
+  height: 750px;
+
 }
 
 .container-form {
+  color: white;
+  text-shadow: 1px 1px 1px black;
   padding: 16px;
   display: grid;
   grid-template-columns: 1fr;
@@ -18,6 +31,11 @@
 
 // Smallest device
 @media (min-width: 100px) and (max-width: 575px) {
+  .booking-new {
+    width: 600px;
+    height: 1000px;
+  }
+
   .container-form {
     grid-template-columns: 1fr;
   }
@@ -25,6 +43,7 @@
 
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
+
   .container-form {
     grid-template-columns: 1fr;
   }
