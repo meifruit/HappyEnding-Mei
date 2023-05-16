@@ -1,13 +1,12 @@
 
 <div class="container">
- <h1>Add a new service</h1>
- <p>Please fill out the below form: </p>
- <%= simple_form_for(@service) do |f| %>
-   <%= f.input :title %>
-   <%= f.input :price %>
-   <%= f.input :description %>
-   <%= f.submit %>
- <% end %>
+  <%= simple_form_for(@service) do |f| %>
+    <%= f.input :title %>
+    <%= f.input :price %>
+    <%= f.input :description %>
+    <%= f.input :photo, as: :file %>
+    <%= f.submit %>
+  <% end %>
 </div>
 
 <br>
