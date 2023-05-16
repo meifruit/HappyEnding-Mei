@@ -2,8 +2,6 @@
   <div class="card" style="width: 18rem;">
     <%# <%= image_tag(@service.user.photo.key) %>
     <div class="card-body">
-      <h5 class="card-title"><%= @service.title %></h5>
-      <p class="card-text"><%= @service.price %></p>
     </div>
   </div>
   <div>
@@ -12,6 +10,39 @@
   </div>
   <div>
     <p><strong>description</strong></p>
-    <%= @service.description %>
+
+
+  </div>
+</div>
+
+<div class="service"></div>
+
+
+
+<div class="service-container">
+  <div class="left">
+  <div class="service-show-photo" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= @service.photo.attached? ? cl_image_path(@service.photo.key) : "https://media.licdn.com/dms/image/D5603AQFIDZtIJrZYqA/profile-displayphoto-shrink_800_800/0/1677032797435?e=1689811200&v=beta&t=85gnrndtPg1cfnRcKXSVP8Linzpi6wUw8Qt66bXW7Y8"%>)">
+  </div>
+   <div class="service-description">
+    <p><%= @service.user.name %></p>
+      <h5 class="card-title"><%= @service.title %></h5>
+      <p class="card-text"><%= @service.price %></p>
+      <p><%= @service.price %>per day</p>
+      <%= link_to "Book now", new_service_booking_path(@service)%>
+   <p> <%= @service.description %></p>
+   <p> <%= @service.user.description %></p>
+   <p> <%= @service.user.sex.capitalize %></p>
+
+    <p><%= @service.user.age  %></p>
+    <p><%= @service.user.interest  %></p>
+</div>
+    This is the left column.
+  </div>
+  <div class="right">
+  <img src="https://tile.loc.gov/image-services/iiif/service:gmd:gmd5:g5700:g5700:ct001356/full/pct:25/0/default.jpg" alt="">
+  <div class="map">
+    <p><%= @service.user.location %></p>
+  </div>
+    This is the right column.
   </div>
 </div>
