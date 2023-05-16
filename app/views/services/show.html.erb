@@ -1,48 +1,84 @@
-<div class="container">
-  <div class="card" style="width: 18rem;">
-    <%# <%= image_tag(@service.user.photo.key) %>
-    <div class="card-body">
+<div class="service-show-container">
+<div class="service-title">
+  <h1><%= @service.title %></h1>
+</div>
+<div class="service-description">
+  <h3>  <p> <%= @service.description %></p></h3>
+</div>
+  <div class="service-container">
+    <div class="left">
+    <div class="service-show-photo" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= @service.photo.attached? ? cl_image_path(@service.photo.key) : "https://i1.sndcdn.com/avatars-UaKAHbGfoeypwb8c-qkYTMg-t240x240.jpg"%>)">
+    </div>
+    </div>
+    <div class="right">
+        <div class="detail">
+          <div class="name">
+            <h2><%= @service.user.name %></h2>
+          </div>
+          <div class="age-gender">
+            <div class="small-card">
+              <p>Age <%= @service.user.age %></p>
+            </div>
+            <div class="small-card">
+              <p><%= @service.user.sex.capitalize %></p>
+            </div>
+          </div>
+
+        <div class="profile-description">
+          <div class="profile-icon">
+            <i class="fa-solid fa-earth-americas"></i>
+          </div>
+          <div class="profile-detail">
+            <strong>Interest</strong>
+            <p class="text-muted"><%= @service.user.interest%></p>
+          </div>
+          <div class="profile-icon">
+            <i class="fa-solid fa-hippo"></i>
+          </div>
+          <div class="profile-detail">
+              <strong>Description</strong>
+            <p class="text-muted"> <%= @service.user.description %></p>
+          </div>
+          <div class="profile-icon">
+            <i class="fa-solid fa-ban"></i>
+          </div>
+          <div class="profile-detail">
+            <strong>Cancelation fee $25</strong>
+          </div>
+
+        </div>
+        </div>
+      <div class="to-booking">
+        <div class="booking-card">
+          <div class="price-booking">
+              <h5>$<%= @service.price %></h5><p>&emsp;per day</p>
+        </div>
+          <%= link_to "Book now", new_service_booking_path(@service), class: "btn btn-flat"%>
+          <div class="price-detail">
+            <p class="text-muted">Price: <%= @service.price %></p>
+            <p class="text-muted">Tax: $30</p>
+          </div>
+          <div class="final-price">
+            <b>Total with taxes <%= @service.price + 30%></b>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  <div>
-    <%= link_to "Book now", new_service_booking_path(@service)%>
-    <a href="#" class="btn btn-primary">Book now <%= @service.price %>per day</a>
-  </div>
-  <div>
-    <p><strong>description</strong></p>
 
 
-  </div>
+
 </div>
 
-<div class="service"></div>
 
 
 
-<div class="service-container">
-  <div class="left">
-  <div class="service-show-photo" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= @service.photo.attached? ? cl_image_path(@service.photo.key) : "https://media.licdn.com/dms/image/D5603AQFIDZtIJrZYqA/profile-displayphoto-shrink_800_800/0/1677032797435?e=1689811200&v=beta&t=85gnrndtPg1cfnRcKXSVP8Linzpi6wUw8Qt66bXW7Y8"%>)">
-  </div>
-   <div class="service-description">
-    <p><%= @service.user.name %></p>
-      <h5 class="card-title"><%= @service.title %></h5>
-      <p class="card-text"><%= @service.price %></p>
-      <p><%= @service.price %>per day</p>
-      <%= link_to "Book now", new_service_booking_path(@service)%>
-   <p> <%= @service.description %></p>
-   <p> <%= @service.user.description %></p>
-   <p> <%= @service.user.sex.capitalize %></p>
 
-    <p><%= @service.user.age  %></p>
-    <p><%= @service.user.interest  %></p>
-</div>
-    This is the left column.
-  </div>
-  <div class="right">
-  <img src="https://tile.loc.gov/image-services/iiif/service:gmd:gmd5:g5700:g5700:ct001356/full/pct:25/0/default.jpg" alt="">
+
+
   <div class="map">
+    <div class="map-image">
+    <h1>map</h1>
+    </div>
     <p><%= @service.user.location %></p>
   </div>
-    This is the right column.
-  </div>
-</div>
