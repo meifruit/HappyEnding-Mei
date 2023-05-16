@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+puts "cleaning users and bookings..."
 Booking.destroy_all
 User.destroy_all
 
@@ -19,6 +20,8 @@ User.destroy_all
     email: Faker::Internet.email,
     password: "123456"
   )
+  
+  puts "created #{User.count} users!"
 
   service = Service.create!(
     user: user,
@@ -27,6 +30,8 @@ User.destroy_all
     price: rand(1..5)
   )
 end
+
+puts "created #{Service.count} users!"
 
 Service.all.each do |service|
   4.times do
@@ -40,3 +45,5 @@ Service.all.each do |service|
   end
 
 end
+
+puts "created #{Booking.count} bookings!"
