@@ -20,7 +20,7 @@ User.destroy_all
     email: Faker::Internet.email,
     password: "123456"
   )
-  
+
   puts "created #{User.count} users!"
 
   service = Service.create!(
@@ -31,7 +31,7 @@ User.destroy_all
   )
 end
 
-puts "created #{Service.count} users!"
+puts "created #{Service.count} services!"
 
 Service.all.each do |service|
   4.times do
