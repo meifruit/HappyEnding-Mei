@@ -11,20 +11,24 @@
 @import "components/index";
 @import "pages/index";
 
+@import "flatpickr/dist/flatpickr.css";
+@import "flatpickr/dist/themes/airbnb";
+
 body {
   background-color: $background-color;
 }
- h1 {
+
+h1 {
   font-size: 36px;
   font-family: $headers-font;
- }
+}
 
- h3 {
+h3 {
   font-size: 24px;
   font-family: $headers-font;
- }
+}
 
- p {
+p {
   font-size: 16px;
   font-family: $headers-font;
- }
+}
