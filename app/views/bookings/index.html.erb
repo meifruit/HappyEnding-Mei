@@ -1,1 +1,9 @@
 <h1>lol</h1>
+<ul class="cards">
+ <% @current_user_bookings.each do |booking| %>
+<li class="card">
+ <%= link_to "edit",  edit_booking_path(booking) %>
+  <h3><%= booking.status%></h3>
+</li>
+ <% end %>
+ </ul>
