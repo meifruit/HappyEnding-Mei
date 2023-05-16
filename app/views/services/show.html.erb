@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="card" style="width: 18rem;">
+      <%# <%= image_tag(@service.user.photo.key) %>
+      <div class="card-body">
+        <h5 class="card-title"><%= @service.title %></h5>
+        <p class="card-text"><%= @service.price %></p>
+      </div>
+    </div>
+    <div>
+      <a href="#" class="btn btn-primary">Book now <%= @service.price %>per day</a>
+    </div>
+    <div>
+      <p><strong>description</strong></p>
+      <%= @service.description %>
+    </div>
+</div>
