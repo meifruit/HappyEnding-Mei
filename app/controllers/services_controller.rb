@@ -12,11 +12,12 @@ class ServicesController < ApplicationController
   end
 
   def create
-    @user = current_user
     @service = Service.new(service_params)
+    @service.user = current_user
     if @service.save
       redirect_to service_path(@service)
     else
+      raise
       render :new, status: :unprocessable_entity
     end
   end
