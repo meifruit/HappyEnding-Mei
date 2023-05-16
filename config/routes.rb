@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   root to: "pages#home"
 
   resources :services, only: [:index, :show, :new, :create] do
-    resources :bookings, except: [:destroy, :index]
+    resources :bookings, except: [:destroy, :index, :edit, :update]
   end
-  resources :bookings, only: [:destroy, :index]
+  resources :bookings, only: [:destroy, :index, :edit, :update]
 end
