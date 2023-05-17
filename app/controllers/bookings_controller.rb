@@ -14,6 +14,7 @@ class BookingsController < ApplicationController
     @user = current_user
     @service = Service.find(params[:service_id])
     @booking.user = @user
+    @booking.status = 1
     @booking.service = @service
     authorize @booking
     if @booking.save
@@ -32,7 +33,7 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
     authorize @booking
     if @booking.update(booking_params)
-      redirect_to booking_path(@booking)
+      redirect_to bookings_path
     else
       render :edit, status: :unprocessable_entity
     end

@@ -1,4 +1,5 @@
 <div class="service-show-container">
+
 <div class="service-title">
   <h1><%= @service.title %></h1>
 </div>
@@ -9,16 +10,12 @@
     <div class="detail">
           <div class="name">
             <h2><%= @service.user.name %></h2>
-          </div>
-          <div class="age-gender">
-            <div class="small-card">
-              <p>Age <%= @service.user.age %></p>
-            </div>
-            <div class="small-card">
-              <p><%= @service.user.sex.capitalize %></p>
-            </div>
-          </div>
 
+          </div>
+          <div class="small-card">
+            <%# <p><%= @service.user.sex.capitalize%>
+          </div>
+        </div>
         <div class="profile-description">
           <div class="profile-icon">
             <i class="fa-solid fa-earth-americas"></i>
@@ -31,7 +28,7 @@
             <i class="fa-solid fa-hippo"></i>
           </div>
           <div class="profile-detail">
-              <strong>Description</strong>
+            <strong>Description</strong>
             <p class="text-muted"> <%= @service.user.description %></p>
           </div>
           <div class="profile-icon">
@@ -40,8 +37,6 @@
           <div class="profile-detail">
             <strong>Cancelation fee $25</strong>
           </div>
-
-        </div>
         </div>
 
     </div>
@@ -62,6 +57,7 @@
           <%= f.input :end_date, as: :string, input_html: { data: { flatpickr_target: "endTime" }, id: 'end_time' } %>
           <%= f.submit "Book!",class:"btn btn-flat" %>
           <% end %>
+
           <div class="price-detail">
             <p class="text-muted">Price: $<%= @service.price %></p>
             <p class="text-muted">Tax: $30</p>
@@ -73,7 +69,4 @@
       </div>
     </div>
   </div>
-
-
-
 </div>
