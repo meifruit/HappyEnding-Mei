@@ -1,29 +1,30 @@
 <div class="service-show-container">
-<div class="service-title">
-  <h1><%= @service.title %></h1>
-</div>
-<div class="service-description">
-  <h3>  <p> <%= @service.description %></p></h3>
-</div>
+  <div class="service-title">
+    <h1><%= @service.title %></h1>
+  </div>
+  <div class="service-description">
+    <h3>
+      <p> <%= @service.description %></p>
+    </h3>
+  </div>
   <div class="service-container">
     <div class="left">
-    <div class="service-show-photo" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= @service.photo.attached? ? cl_image_path(@service.photo.key) : "https://i1.sndcdn.com/avatars-UaKAHbGfoeypwb8c-qkYTMg-t240x240.jpg"%>)">
-    </div>
+      <div class="service-show-photo" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= @service.photo.attached? ? cl_image_path(@service.photo.key) : "https://i1.sndcdn.com/avatars-UaKAHbGfoeypwb8c-qkYTMg-t240x240.jpg"%>)">
+      </div>
     </div>
     <div class="right">
-        <div class="detail">
-          <div class="name">
-            <h2><%= @service.user.name %></h2>
+      <div class="detail">
+        <div class="name">
+          <h2><%= @service.user.name %></h2>
+        </div>
+        <div class="age-gender">
+          <div class="small-card">
+            <p>Age <%= @service.user.age %></p>
           </div>
-          <div class="age-gender">
-            <div class="small-card">
-              <p>Age <%= @service.user.age %></p>
-            </div>
-            <div class="small-card">
-              <p><%= @service.user.sex.capitalize %></p>
-            </div>
+          <div class="small-card">
+            <%# <p><%= @service.user.sex.capitalize%>
           </div>
-
+        </div>
         <div class="profile-description">
           <div class="profile-icon">
             <i class="fa-solid fa-earth-americas"></i>
@@ -36,7 +37,7 @@
             <i class="fa-solid fa-hippo"></i>
           </div>
           <div class="profile-detail">
-              <strong>Description</strong>
+            <strong>Description</strong>
             <p class="text-muted"> <%= @service.user.description %></p>
           </div>
           <div class="profile-icon">
@@ -45,14 +46,14 @@
           <div class="profile-detail">
             <strong>Cancelation fee $25</strong>
           </div>
-
         </div>
-        </div>
+      </div>
       <div class="to-booking">
         <div class="booking-card">
           <div class="price-booking">
-              <h5>$<%= @service.price %></h5><p>&emsp;per day</p>
-        </div>
+            <h5>$<%= @service.price %></h5>
+            <p>&emsp;per day</p>
+          </div>
           <%= link_to "Book now", new_service_booking_path(@service), class: "btn btn-flat"%>
           <div class="price-detail">
             <p class="text-muted">Price: <%= @service.price %></p>
@@ -65,20 +66,10 @@
       </div>
     </div>
   </div>
-
-
-
 </div>
-
-
-
-
-
-
-
-  <div class="map">
-    <div class="map-image">
+<div class="map">
+  <div class="map-image">
     <h1>map</h1>
-    </div>
-    <p><%= @service.user.location %></p>
   </div>
+  <p><%= @service.user.location %></p>
+</div>
