@@ -19,16 +19,17 @@ body {
 }
 
 h1 {
-  font-size: 36px;
+  font-size: xxx-large;
   font-family: $headers-font;
+  color: $font-title-color;
 }
 
-h3 {
-  font-size: 24px;
-  font-family: $headers-font;
+h4 {
+  font-family: $sub-headers-font;
+  color: $font-subtitle-color;
 }
 
 p {
-  font-size: 16px;
-  font-family: $headers-font;
+  font-family: $sub-headers-font;
+  color: $font-text-color;
 }

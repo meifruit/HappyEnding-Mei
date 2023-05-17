@@ -13,15 +13,13 @@
 
 .service-container {
   display: grid;
-  grid-template-columns: 40% 60%;
+  grid-template-columns: 60% 40%;
 }
 
 .right {
-  background-color: white;
   margin: 2rem;
   height: 70vh;
   display: grid;
-  grid-template-columns: 60% 40%;
 }
 
 .left {
@@ -32,9 +30,8 @@
 }
 
 .service-show-photo {
-  width: 100%;
   min-height: 100;
-  height: 100%;
+  height: 50vh;
   border-radius: 8px;
   background-position: center;
   background-repeat: no-repeat;
@@ -42,11 +39,7 @@
   background-size: cover;
 }
 
-.right img {
-  height: 40vh;
-  width: 100%;
-  object-fit: cover;
-}
+
 
 .detail {
   display: flex;
@@ -60,6 +53,7 @@
 }
 
 .age-gender {
+  margin-top: 1rem;
   display: flex;
   justify-content: space-around;
   padding-bottom: 2rem;
@@ -123,10 +117,11 @@ h5 {
   box-shadow: 0 0px 16px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   border-color: 1px ;
-  height: 80%;
+  height: 90%;
   padding: 2rem;
   display: flex;
   flex-direction: column;
+  position: sticky;
 }
 
 
@@ -136,6 +131,12 @@ h5 {
 
 .price-detail {
   margin-top: 1rem;
+  border-bottom: 1px solid gray;
+}
+
+.final-price {
+  margin-top: 1rem;
+  padding-bottom: 1rem;
   border-bottom: 1px solid gray;
 }
 
@@ -161,4 +162,48 @@ h5 {
   margin:0 0.3em 0.3em 0;
   background: #00CECB;
   transition: background 0.3s ease;
+}
+
+.address {
+  margin-top: 1rem;
+}
+
+.map-show {
+  border-radius: 8px;
+}
+
+// Smallest device
+@media (min-width: 370px) {
+  .service-container {
+    grid-template-columns: 1fr;
+
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+  .service-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .service-container {
+    grid-template-columns: 60% 40%;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .service-container {
+    grid-template-columns: 60% 40%;
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .services {
+    grid-template-columns: 60% 40%;
+  }
 }

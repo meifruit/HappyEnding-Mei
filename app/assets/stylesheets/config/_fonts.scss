@@ -1,10 +1,11 @@
 // Import Google fonts
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet');
+@import url('https://fonts.googleapis.com/css2?family=Caveat&family=Dancing+Script&family=Zeyada&display=swap');
 
 // Define fonts for body and headers
-$body-font: "Poppins", "sans-serif";
-$headers-font: "Poppins", "sans-serif";
 
+$headers-font: 'Dancing Script', cursive;
+$sub-headers-font: 'Caveat', cursive;
+$body-font: 'Caveat', cursive;
 // To use a font file (.woff) uncomment following lines
 // @font-face {
 //   font-family: "Font Name";
