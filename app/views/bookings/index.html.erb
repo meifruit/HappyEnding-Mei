@@ -1,6 +1,6 @@
 <div class="cards-book">
   <div >
-    <h1>Partners you booked</h1>
+    <h1>Partners</h1>
     <% @current_user_bookings.each do |booking| %>
       <% next if booking.status == 0 %>
       <div class="card-product">
@@ -10,8 +10,13 @@
           <%= image_tag "icon.png" %>
         <% end %>
         <div class="card-product-infos">
-          <p><%= booking.status%></p>
-          <h2><%= "#{booking.service.title}" %></h2>
+          <div>
+            <h5><%= "#{booking.service.user.name}" %></h5>
+            <h5><%= "#{booking.service.title}" %></h5>
+          </div>
+          <h4><%= booking.status%></h4>
+          <%# <p><%= "#{booking.start_date}" %>
+          <%# <p><%= "#{booking.end_date}" %>
           <%# <p><%= "#{booking.start_date}" %>
           <%# <p><%= "#{booking.end_date}" %>
           <% if policy(booking).edit? %>
@@ -30,26 +35,26 @@
     <% end %>
   </div>
   <div>
-    <h1>Services you offered</h1>
+    <h1>Bookings</h1>
     <div >
       <% @current_user.bookings_as_owner.each do |booking| %>
         <div class="card-product">
-          <% if booking.service.photo.key %>
-            <%= image_tag cl_image_path(booking.service.photo.key) %>
-          <% else %>
-            <%= image_tag "icon.png" %>
-          <% end %>
+          <%# <% if booking.service.photo.key %>
+          <%# <%= image_tag cl_image_path(booking.service.photo.key) %>
+          <%# <% else %>
+          <%# <%= image_tag "icon.png" %>
+          <%# <% end %>
           <div class="card-product-infos">
             <%# <h2><%= "#{booking.service.title}" %>
-            <p>Booked by <%= "#{booking.user.name}" %></p>
-            <p><%= booking.status%></p>
+            <h5>Booked by <%= "#{booking.user.name}" %></h5>
+            <h4><%= booking.status%></h4>
             <%= simple_form_for booking, html: { onchange:"submit()"}  do |t| %>
               <%= t.input :status, collection: ["pending","rejected", "accepted"], include_blank: false  %>
             <% end %>
             <%# <%= link_to "Edit",  edit_booking_path(booking), class:"btn btn-primary" %>
           </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 </div>
