@@ -1,8 +1,21 @@
-<div class="container-services">
+<div class="banner">
+  <%= video_tag "pexels-anton-antons-2035509-1920x1080-24fps.mp4", controls: false, autoplay: :autoplay, loop: :loop, muted: :muted %>
+  <div class="container" id="banner-info">
+    <h1>Happy Ending goes beyond a quick ending!</h1>
+    <p>Change your life by meeting the best boyfriends and girlfriends.</p>
+    <a class="btn btn-flat" href="#cards-services">Search now</a>
+  </div>
+</div>
+
+
+<div class="container-services" id="services">
   <div>
   </div>
 
-  <div class="cards-services">
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <div class="cards-services" id="cards-services">
     <% @services.each do |service| %>
         <%= link_to service_path(service), class:'text-decoration-none' do%>
     <div class="card-service">
@@ -10,16 +23,31 @@
       </div>
       <div class="card-info">
         <div class="header">
-        <p ><%= service.user.name %>,  <%= service.user.age %></p>
+        <h4 ><%= service.user.name %>,  <%= service.user.age %></h4>
         </div>
         <p class="text-muted"><%= service.title %></p>
         <div class="location">
-        <i class="fa-solid fa-location-dot"></i> <p class="text-muted"><%= service.user.location %></p>
+        <i class="fa-solid fa-location-dot" style="color: #511f37;"></i> <p class="text-muted"><%= service.user.location %></p>
         </div>
-        <p>$<%= service.price %> per day</p>
+        <div class="price">
+        <i class="fa-solid fa-dollar-sign" style="color: #511f37;"></i></i><%= service.price %>  per day</p>
+        </div>
       </div>
     </div>
     <% end %>
     <% end %>
   </div>
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+
 </div>
