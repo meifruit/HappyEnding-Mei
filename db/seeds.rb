@@ -5,36 +5,61 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+require 'open-uri'
+require 'nokogiri'
 puts "cleaning users and bookings..."
 Booking.destroy_all
 User.destroy_all
 
-4.times do
+gender = ["male", "female"]
+title_service = ["Boyfriend", "Girlfriend", "Soulmate", "Datemate", "Datefusion", "Heartsync", "LoveHaven", "RomanceRevolution"]
+
+User.create(
+    name: "John Doe",
+    interest: "Writing",
+    location: "Meguro,Tokyo",
+    sex: "male",
+    description: Faker::Quote.most_interesting_man_in_the_world,
+    age: rand(18..50),
+    email: "john@email.com",
+    password: "123456"
+  )
+
+20.times do
   user = User.create!(
     name: Faker::Name.name,
     interest: Faker::Hobby.activity,
-    location: Faker::Address.full_address,
-    sex: "male",
+    location: Faker::Address.state,
+    sex: gender.sample,
     description: Faker::Quote.most_interesting_man_in_the_world,
-    age: Faker::Number.decimal_part(digits: 2),
+    age: rand(18..50),
     email: Faker::Internet.email,
     password: "123456"
   )
 
+
+
   puts "created #{User.count} users!"
 
-  service = Service.create!(
+  service = Service.new(
     user: user,
-    title: "Service title",
-    description: "Service descriptiton",
-    price: rand(1..5)
+    title: title_service.sample,
+    description: user.description,
+    price: rand(1000..100_000)
   )
+  url = 'https://this-person-does-not-exist.com/en'
+  doc = Nokogiri::HTML(URI.open(url).read)
+  src = doc.search('#avatar').first['src']
+  photo_url = "https://this-person-does-not-exist.com#{src}"
+  file = URI.open(photo_url)
+  service.photo.attach(io: file, filename: 'user.png', content_type: 'image/png')
+  service.save
 end
 
 puts "created #{Service.count} services!"
 
 Service.all.each do |service|
-  4.times do
+  rand(1..3).times do
     booking = Booking.create!(
       user: User.where.not(id: service.user).sample,
       service: service,
