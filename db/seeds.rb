@@ -29,7 +29,7 @@ User.create(
   user = User.create!(
     name: Faker::Name.name,
     interest: Faker::Hobby.activity,
-    location: Faker::Address.state,
+    location: Faker::WorldCup.city,
     sex: gender.sample,
     description: Faker::Quote.most_interesting_man_in_the_world,
     age: rand(18..50),
