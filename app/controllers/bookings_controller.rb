@@ -11,6 +11,7 @@ class BookingsController < ApplicationController
     @other_bookings = current_user.bookings_as_owner do |booking|
       booking.status != "pending"
     end
+    @pending_bookings = current_user.bookings.pending
   end
 
   def create
