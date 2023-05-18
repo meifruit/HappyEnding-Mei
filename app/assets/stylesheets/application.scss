@@ -26,9 +26,15 @@ h1 {
 
 }
 
-h4 {
+h3 {
   font-family: $sub-headers-font;
   color: $font-subtitle-color;
+  font-size: xx-large;
+}
+
+h4 {
+  font-family: $sub-headers-font;
+  color: $font-subtitle-two-color;
   font-size: xx-large;
 }
 

@@ -7,6 +7,10 @@ class BookingsController < ApplicationController
 
   def index
     @current_user_bookings = policy_scope(Booking.where(user: current_user))
+    @none_rejected_bookings = current_user.bookings_as_owner.pending
+    @other_bookings = current_user.bookings_as_owner do |booking|
+      booking.status != "pending"
+    end
   end
 
   def create
@@ -37,6 +41,13 @@ class BookingsController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @booking = Booking.find(params[:id])
+    authorize @booking
+    @booking.destroy
+    redirect_to bookings_path
   end
 
   private

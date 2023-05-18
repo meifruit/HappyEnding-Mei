@@ -1,60 +1,105 @@
-<div class="cards-book">
-  <div >
-    <h1>Partners</h1>
-    <% @current_user_bookings.each do |booking| %>
-      <% next if booking.status == 0 %>
-      <div class="card-product">
-        <% if booking.service.photo.key %>
-          <%= image_tag cl_image_path(booking.service.photo.key) %>
-        <% else %>
-          <%= image_tag "icon.png" %>
-        <% end %>
-        <div class="card-product-infos">
-          <div>
-            <h5><%= "#{booking.service.user.name}" %></h5>
-            <h5><%= "#{booking.service.title}" %></h5>
-          </div>
-          <h4><%= booking.status%></h4>
-          <%# <p><%= "#{booking.start_date}" %>
-          <%# <p><%= "#{booking.end_date}" %>
-          <%# <p><%= "#{booking.start_date}" %>
-          <%# <p><%= "#{booking.end_date}" %>
-          <% if policy(booking).edit? %>
-            <div class=".text-right">
-              <%= simple_form_for booking do |t| %>
-                <div class="d-none">
-                  <%= t.input :status, value: 0 %>
+<div class="container-book">
+  <ul class="nav tabs-underlined" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <span class="nav-link tab-underlined active" id="bookings-tab" data-bs-toggle="tab" data-bs-target="#bookings-tab-pane" role="tab" aria-controls="bookings-tab-pane" aria-selected="true">Your Bookings</span>
+    </li>
+    <li class="nav-item" role="presentation">
+      <span class="nav-link tab-underlined" id="requests-tab" data-bs-toggle="tab" data-bs-target="#requests-tab-pane" role="tab" aria-controls="requests-tab-pane" aria-selected="false">Waiting your Approval</span>
+    </li>
+    <li class="nav-item" role="presentation">
+      <span class="nav-link tab-underlined" id="conversations-tab" data-bs-toggle="tab" data-bs-target="#conversations-tab-pane" role="tab" aria-controls="conversations-tab-pane" aria-selected="false">Checked</span>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade py-3 show active" id="bookings-tab-pane" role="tabpanel" aria-labelledby="bookings-tab" tabindex="0">
+      <div >
+        <h1>Partners you booked</h1>
+        <% @current_user_bookings.each do |booking| %>
+          <% next if booking.status == 0 %>
+          <div class="card-product">
+            <% if booking.service.photo.key %>
+              <%= image_tag cl_image_path(booking.service.photo.key) %>
+            <% else %>
+              <%= image_tag "icon.png" %>
+            <% end %>
+            <div class="card-product-infos">
+              <div>
+                <h5><%= "#{booking.service.user.name}" %></h5>
+                <h5><%= "#{booking.service.title}" %></h5>
+                <h5><%= "#{booking.service.user.location}" %></h5>
+              </div>
+              <div>
+                <p>From <%= "#{booking.start_date}" %></p>
+                <p>To <%= "#{booking.end_date}" %></p>
+              </div>
+              <h4><%= booking.status%></h4>
+              <% if policy(booking).edit? %>
+                <div class=".text-right">
+                  <%= link_to "Cancel", booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure? 😢"},class:"btn btn-primary"%>
                 </div>
-                <%= t.submit "cancel",class:"btn btn-primary"%>
               <% end %>
-              <%# <%= link_to "edit",  edit_booking_path(booking), class:"btn btn-primary" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div>
+    </div>
+    <div class="tab-pane fade py-3" id="requests-tab-pane" role="tabpanel" aria-labelledby="requests-tab" tabindex="0">
+      <div>
+        <h1>Please select Accept or Reject</h1>
+        <div >
+          <% @none_rejected_bookings.each do |booking| %>
+            <div class="card-product">
+              <div class="card-product-infos">
+                <h5>Booked by <%= "#{booking.user.name}" %></h5>
+                <div>
+                  <p>From <%= "#{booking.start_date}" %></p>
+                  <p>To <%= "#{booking.end_date}" %></p>
+                </div>
+                <h4><%= booking.status%></h4>
+                <div>
+                  <%= simple_form_for booking, html: { onchange:"submit()"}  do |t| %>
+                    <%= t.input :status, collection: ["pending","rejected", "accepted"], include_blank: false  %>
+                  <% end %>
+                  <% if booking.status == "rejected" %>
+                    <%= link_to "Delete", booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure? 😢"},class:"btn btn-primary" %>
+                  <% end %>
+                </div>
+              </div>
             </div>
           <% end %>
         </div>
       </div>
-    <% end %>
-  </div>
-  <div>
-    <h1>Bookings</h1>
-    <div >
-      <% @current_user.bookings_as_owner.each do |booking| %>
-        <div class="card-product">
-          <%# <% if booking.service.photo.key %>
-          <%# <%= image_tag cl_image_path(booking.service.photo.key) %>
-          <%# <% else %>
-          <%# <%= image_tag "icon.png" %>
-          <%# <% end %>
-          <div class="card-product-infos">
-            <%# <h2><%= "#{booking.service.title}" %>
-            <h5>Booked by <%= "#{booking.user.name}" %></h5>
-            <h4><%= booking.status%></h4>
-            <%= simple_form_for booking, html: { onchange:"submit()"}  do |t| %>
-              <%= t.input :status, collection: ["pending","rejected", "accepted"], include_blank: false  %>
+    </div>
+    <div class="tab-pane fade py-3" id="conversations-tab-pane" role="tabpanel" aria-labelledby="conversations-tab" tabindex="0">
+      <div>
+        <h1>Checked List</h1>
+        <div >
+          <% current_user.bookings_as_owner.each do |booking| %>
+            <% if booking.status != "pending" %>
+              <div class="card-product">
+                <div class="card-product-infos">
+                  <h5>Booked by <%= "#{booking.user.name}" %></h5>
+                  <div>
+                    <p>From <%= "#{booking.start_date}" %></p>
+                    <p>To <%= "#{booking.end_date}" %></p>
+                  </div>
+                  <h4><%= booking.status%></h4>
+                  <div>
+                    <%= simple_form_for booking, html: { onchange:"submit()"}  do |t| %>
+                      <%= t.input :status, collection: ["pending","rejected", "accepted"], include_blank: false  %>
+                    <% end %>
+                    <% if booking.status == "rejected" %>
+                      <%= link_to "Delete", booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure? 😢"},class:"btn btn-primary" %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
             <% end %>
-            <%# <%= link_to "Edit",  edit_booking_path(booking), class:"btn btn-primary" %>
-          </div>
+          <% end %>
         </div>
-      <% end %>
+      </div>
     </div>
   </div>
 </div>

@@ -4,11 +4,11 @@
 </div>
   <div class="service-container">
     <div class="left">
-    <div class="map-profile">
-    <div class="service-show-photo" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= @service.photo.attached? ? cl_image_path(@service.photo.key) : "https://i1.sndcdn.com/avatars-UaKAHbGfoeypwb8c-qkYTMg-t240x240.jpg"%>)">
-    </div>
-    </div>
-    <div class="detail">
+      <div class="map-profile">
+      <div class="service-show-photo" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= @service.photo.attached? ? cl_image_path(@service.photo.key) : "https://i1.sndcdn.com/avatars-UaKAHbGfoeypwb8c-qkYTMg-t240x240.jpg"%>)">
+      </div>
+      </div>
+      <div class="detail">
           <div class="name">
             <h2><%= @service.user.name %></h2>
           </div>
@@ -53,8 +53,17 @@
         </div>
         </div>
         </div>
-
+        <div class="reviews">
+          <h1> <%= @reviews.length %> Reviews </h1>
+          <% @reviews.each do |review| %>
+            <h3> <%= review.user.name  %> </h3>
+            <p> 5/<%=review.rating%> <%= '❤️' * review.rating %> </p>
+            <p> <%= review.comment  %> </p>
+            <br>
+          <% end %>
+      </div>
     </div>
+
     <div class="right">
 
 
@@ -80,6 +89,15 @@
     </div>
   </div>
 
+  <div class="photos">
+  <% if @service.photos.attached?%>
+  <div class=service-show-photos>
+    <% @service.photos.each do |photo| %>
+<div><%= cl_image_tag(photo.key) %></div>
 
+    <% end %>
+    </div>
+<% end %>
 
+</div>
 </div>
