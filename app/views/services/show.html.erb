@@ -7,8 +7,8 @@
       <div class="map-profile">
         <ul class="profile-cards">
           <% if @service.photos.attached?%>
-          <% @service.photos.each do |photo| %>
-          <li class="service-show-photo"><%= cl_image_tag(photo.key) %></li>
+            <% @service.photos.each do |photo| %>
+              <li class="service-show-photo"><%= cl_image_tag(photo.key) %></li>
             <% end %>
           <% end %>
         </ul>
