@@ -1,5 +1,6 @@
 class ServicesController < ApplicationController
   def index
+    @user = current_user
     @services = policy_scope(Service)
     if params[:query].present?
       @services = Service.global_search(params[:query])
@@ -47,6 +48,14 @@ class ServicesController < ApplicationController
     @service = Service.find(params[:id])
     @service.destroy
     redirect_to bookings_path
+  end
+
+  def toggle_favorite
+    @service = Service.find_by(id: params[:id])
+    authorize @service
+    @user = current_user
+    @user.favorited?(@service) ? @user.unfavorite(@service) : @user.favorite(@service)
+    redirect_to services_path
   end
 
 private

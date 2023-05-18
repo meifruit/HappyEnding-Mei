@@ -25,4 +25,8 @@ class ServicePolicy < ApplicationPolicy
   def update?
     record.user == user
   end
+
+  def toggle_favorite?
+    true
+  end
 end

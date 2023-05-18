@@ -10,7 +10,7 @@ class Service < ApplicationRecord
   pg_search_scope :global_search,
     against: [:title, :description, :price],
     associated_against: {
-      user: [:name]
+      user: [:name, :location]
   },
     using: {
       tsearch: { prefix: true }
@@ -20,5 +20,5 @@ class Service < ApplicationRecord
   }
 
   has_many_attached :photos
-
+  acts_as_favoritable
 end
