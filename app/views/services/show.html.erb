@@ -1,6 +1,6 @@
 <div class="service-show-container">
   <div class="service-title">
-    <h1 style="color: black"><%= @service.title %></h1>
+    <h1><%= @service.title %></h1>
   </div>
   <div class="service-container">
     <div class="left">
@@ -10,83 +10,85 @@
             <% @service.photos.each do |photo| %>
               <li class="service-show-photo"><%= cl_image_tag(photo.key) %></li>
             <% end %>
+          <% else %>
+            <li class="service-show-photo"><img src="https://i1.sndcdn.com/avatars-UaKAHbGfoeypwb8c-qkYTMg-t240x240.jpg" alt=""></li>
           <% end %>
         </ul>
+      </div>
+      <div class="detail">
+        <div class="name">
+          <h2><%= @service.user.name %></h2>
+        </div>
+        <div class="age-gender">
+          <div class="small-card">
+            <p>Age <%= @service.user.age %></p>
+          </div>
+          <div class="small-card">
+            <p><%= @service.user.sex.capitalize %></p>
+          </div>
+        </div>
+        <div class="map-description">
+          <div class="profile-description">
+            <div class="profile-icon">
+              <i class="fa-solid fa-earth-americas"></i>
+            </div>
+            <div class="profile-detail">
+              <strong>Interest</strong>
+              <p class="text-muted"><%= @service.user.interest%></p>
+            </div>
+            <div class="profile-icon">
+              <i class="fa-solid fa-hippo"></i>
+            </div>
+            <div class="profile-detail">
+              <strong>Description</strong>
+              <p class="text-muted"> <%= @service.user.description %></p>
+            </div>
+            <div class="profile-icon">
+              <i class="fa-solid fa-ban"></i>
+            </div>
+            <div class="profile-detail">
+              <strong>Cancelation fee $25</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="reviews">
+        <h1> <%= @reviews.length %> Reviews </h1>
+        <% @reviews.each do |review| %>
+          <h3> <%= review.user.name  %> </h3>
+          <p> 5/<%=review.rating%> <%= '❤️' * review.rating %> </p>
+          <p> <%= review.comment  %> </p>
+          <br>
+        <% end %>
+      </div>
     </div>
-    <div class="detail">
-      <div class="name">
-        <h2><%= @service.user.name %></h2>
-      </div>
-      <div class="age-gender">
-        <div class="small-card">
-          <p>Age <%= @service.user.age %></p>
-        </div>
-        <div class="small-card">
-          <p><%= @service.user.sex.capitalize %></p>
-        </div>
-      </div>
-      <div class="map-description">
-        <div class="profile-description">
-          <div class="profile-icon">
-            <i class="fa-solid fa-earth-americas"></i>
-          </div>
-          <div class="profile-detail">
-            <strong>Interest</strong>
-            <p class="text-muted"><%= @service.user.interest%></p>
-          </div>
-          <div class="profile-icon">
-            <i class="fa-solid fa-hippo"></i>
-          </div>
-          <div class="profile-detail">
-            <strong>Description</strong>
-            <p class="text-muted"> <%= @service.user.description %></p>
-          </div>
-          <div class="profile-icon">
-            <i class="fa-solid fa-ban"></i>
-          </div>
-          <div class="profile-detail">
-            <strong>Cancelation fee $25</strong>
-          </div>
-        </div>
-        <div class="map-show">
-          <div  style="width: 25vw; height: 20vh;"
+    <div class="right">
+      <div class="map-show">
+        <div  style="width: 30vw; height: 40vh;"
         data-controller="map"
         data-map-markers-value="<%= @marker.to_json %>"
         data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
-          <p>Location: <%= @service.user.location %></p>
-        </div>
+        <p>Location: <%= @service.user.location %></p>
       </div>
-    </div>
-    <div class="reviews">
-      <h1> <%= @reviews.length %> Reviews </h1>
-      <% @reviews.each do |review| %>
-        <h3> <%= review.user.name  %> </h3>
-        <p> 5/<%=review.rating%> <%= '❤️' * review.rating %> </p>
-        <p> <%= review.comment  %> </p>
-        <br>
-      <% end %>
-    </div>
-  </div>
-  <div class="right" data-controller="flatpickr">
-    <div class="to-booking">
-      <div class="booking-card">
-        <div class="price-booking">
-          <h5>$<%= @service.price %></h5>
-          <p>&emsp;per day</p>
-        </div>
-        <%= simple_form_for [@service, @booking], data: { controller: 'flatpickr' } do |f| %>
-          <%= f.input :start_date, as: :string, input_html: { data: { flatpickr_target: "startTime" }  }  %>
-          <%= f.input :end_date, as: :string, input_html: { data: { flatpickr_target: "endTime" }, id: 'end_time' } %>
-          <%= f.submit "Book!",class:"btn btn-flat" %>
-        <% end %>
-        <div class="price-detail">
-          <p class="text-muted">Price: $<%= @service.price %></p>
-          <p class="text-muted">Tax: $30</p>
-        </div>
-        <div class="final-price">
-          <b>Total with taxes $<%= @service.price + 30%></b>
+      <div class="to-booking">
+        <div class="booking-card">
+          <div class="price-booking">
+            <h5>$<%= @service.price %></h5>
+            <p>&emsp;per day</p>
+          </div>
+          <%= simple_form_for [@service, @booking], data: { controller: 'flatpickr' } do |f| %>
+            <%= f.input :start_date, as: :string, input_html: { data: { flatpickr_target: "startTime" }  }  %>
+            <%= f.input :end_date, as: :string, input_html: { data: { flatpickr_target: "endTime" }, id: 'end_time' } %>
+            <%= f.submit "Book!",class:"btn btn-flat" %>
+          <% end %>
+          <div class="price-detail">
+            <p class="text-muted">Price: $<%= @service.price %></p>
+            <p class="text-muted">Tax: $30</p>
+          </div>
+          <div class="final-price">
+            <b>Total with taxes $<%= @service.price + 30%></b>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>

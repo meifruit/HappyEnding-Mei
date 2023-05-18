@@ -19,8 +19,8 @@
         <h1>Partners you booked</h1>
         <% @pending_bookings.each do |booking| %>
           <div class="card-product">
-            <% if booking.service.photos.first.key %>
-              <%= image_tag cl_image_path(booking.service.photos.first.key) %>
+            <% if booking.service.photos.first %>
+              <%= image_tag cl_image_tag(booking.service.photos.first) %>
             <% else %>
               <%= image_tag "icon.png" %>
             <% end %>
