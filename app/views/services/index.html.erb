@@ -19,7 +19,7 @@
     <% @services.each do |service| %>
         <%= link_to service_path(service), class:'text-decoration-none' do%>
     <div class="card-service">
-      <div class="service-photo" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= service.photo.attached? ? cl_image_path(service.photo.key) : "https://i1.sndcdn.com/avatars-UaKAHbGfoeypwb8c-qkYTMg-t240x240.jpg"%>)">
+      <div class="service-photo" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= service.photos.attached? ? cl_image_path(service.photos.first.key) : "https://i1.sndcdn.com/avatars-UaKAHbGfoeypwb8c-qkYTMg-t240x240.jpg"%>)">
       </div>
       <div class="card-info">
         <div class="header">
