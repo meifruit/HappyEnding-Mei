@@ -14,7 +14,7 @@ User.destroy_all
 gender = ["male", "female"]
 title_service = ["Boyfriend", "Girlfriend", "Soulmate", "Datemate", "Datefusion", "Heartsync", "LoveHaven", "RomanceRevolution"]
 location = ["Shibuya, Tokyo", "Roppongi, Tokyo", "Shinjuku, Tokyo", "Okinawa", "Osaka", "Kyoto", "Hiroshima"]
-
+status = ["unbooked", "pending", "rejected", "accepted", "completed"]
 User.create(
     name: "John Doe",
     interest: "Writing",
@@ -60,11 +60,11 @@ end
 puts "created #{Service.count} services!"
 
 Service.all.each do |service|
-  rand(1..3).times do
+  rand(1..4).times do
     booking = Booking.create!(
       user: User.where.not(id: service.user).sample,
       service: service,
-      status: "pending",
+      status: status.sample,
       start_date: Date.today + rand(1..3),
       end_date: Date.today + rand(4..6)
     )
