@@ -11,11 +11,11 @@ class BookingPolicy < ApplicationPolicy
   end
 
   def new?
-    true
+    record.user == user && record.service.user != user
   end
 
   def create?
-    true
+    record.user == user && record.service.user != user
   end
 
   def edit?
@@ -23,6 +23,10 @@ class BookingPolicy < ApplicationPolicy
   end
 
   def update?
+    record.user == user || record.service.user == user
+  end
+
+  def destroy?
     record.user == user || record.service.user == user
   end
 end
