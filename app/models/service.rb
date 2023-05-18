@@ -20,4 +20,5 @@ class Service < ApplicationRecord
   }
 
   has_many_attached :photos
+  acts_as_favoritable
 end
