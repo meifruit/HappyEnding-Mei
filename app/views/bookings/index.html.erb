@@ -17,8 +17,8 @@
         <% @current_user_bookings.each do |booking| %>
           <% next if booking.status == 0 %>
           <div class="card-product">
-            <% if booking.service.photo.key %>
-              <%= image_tag cl_image_path(booking.service.photo.key) %>
+            <% if booking.service.photos.first.key %>
+              <%= image_tag cl_image_path(booking.service.photos.first.key) %>
             <% else %>
               <%= image_tag "icon.png" %>
             <% end %>
