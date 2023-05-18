@@ -30,6 +30,14 @@ class ServicesController < ApplicationController
     end
   end
 
+  def destroy
+    @service = Service.find(params[:id])
+    @service.destroy
+    redirect_to bookings_path
+  end
+
+private
+
   def service_params
     params.require(:service).permit(:price, :description, :title, :user_id, :photo)
   end
