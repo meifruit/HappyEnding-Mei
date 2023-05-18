@@ -35,6 +35,16 @@
         <%= link_to service_path(service), class:'text-decoration-none' do%>
     <div class="card-service">
       <div class="service-photo" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= service.photos.attached? ? cl_image_path(service.photos.first.key) : "https://i1.sndcdn.com/avatars-UaKAHbGfoeypwb8c-qkYTMg-t240x240.jpg"%>)">
+      <% if @user && @user.favorited?(service) %>
+        <%= link_to toggle_favorite_service_path(service), data: {turbo_method: :post} do%>
+        <i class="fa-regular fa-heart"></i>
+        <% end %>
+      <% else %>
+        <%= link_to toggle_favorite_service_path(service), data: {turbo_method: :post} do%>
+        <i class="fa-solid fa-heart"></i>
+        <% end %>
+      <% end %>
+
       </div>
       <div class="card-info">
         <div class="header">
