@@ -7,6 +7,7 @@ ruby "3.1.2"
 gem 'faker'
 gem "pundit"
 gem "pg_search"
+gem 'acts_as_favoritor'
 
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
