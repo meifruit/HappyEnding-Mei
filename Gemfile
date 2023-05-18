@@ -6,6 +6,7 @@ ruby "3.1.2"
 #added new gems
 gem 'faker'
 gem "pundit"
+gem "pg_search"
 
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"

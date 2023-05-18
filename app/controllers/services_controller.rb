@@ -1,6 +1,19 @@
 class ServicesController < ApplicationController
   def index
     @services = policy_scope(Service)
+    if params[:query].present?
+      @services = Service.global_search(params[:query])
+    else
+      @services = Service.all
+    end
+
+    if params[:min_price].present? && params[:max_price].present?
+      @services = @services.filter_by_price(params[:min_price].to_i, params[:max_price].to_i)
+    end
+
+    if @services.empty?
+      flash.now[:notice] = "0 results"
+    end
   end
 
   def show
