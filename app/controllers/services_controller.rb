@@ -5,6 +5,7 @@ class ServicesController < ApplicationController
 
   def show
     @service = Service.find(params[:id])
+    @reviews = Review.all
     @booking = Booking.new
     authorize @service
     @marker = [{
