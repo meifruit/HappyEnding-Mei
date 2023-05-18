@@ -88,4 +88,16 @@
       </div>
     </div>
   </div>
+
+  <div class="photos">
+  <% if @service.photos.attached?%>
+  <div class=service-show-photos>
+    <% @service.photos.each do |photo| %>
+<div><%= cl_image_tag(photo.key) %></div>
+
+    <% end %>
+    </div>
+<% end %>
+
+</div>
 </div>

@@ -13,6 +13,7 @@ User.destroy_all
 
 gender = ["male", "female"]
 title_service = ["Boyfriend", "Girlfriend", "Soulmate", "Datemate", "Datefusion", "Heartsync", "LoveHaven", "RomanceRevolution"]
+location = ["Shibuya, Tokyo", "Roppongi, Tokyo", "Shinjuku, Tokyo", "Okinawa", "Osaka", "Kyoto", "Hiroshima"]
 
 User.create(
     name: "John Doe",
@@ -25,11 +26,11 @@ User.create(
     password: "123456"
   )
 
-20.times do
+5.times do
   user = User.create!(
     name: Faker::Name.name,
     interest: Faker::Hobby.activity,
-    location: Faker::WorldCup.city,
+    location: location.sample,
     sex: gender.sample,
     description: Faker::Quote.most_interesting_man_in_the_world,
     age: rand(18..50),
@@ -37,23 +38,23 @@ User.create(
     password: "123456"
   )
 
-
-
   puts "created #{User.count} users!"
 
   service = Service.new(
     user: user,
     title: title_service.sample,
     description: user.description,
-    price: rand(1000..100_000)
+    price: rand(100..500)
   )
-  url = 'https://this-person-does-not-exist.com/en'
-  doc = Nokogiri::HTML(URI.open(url).read)
-  src = doc.search('#avatar').first['src']
-  photo_url = "https://this-person-does-not-exist.com#{src}"
-  file = URI.open(photo_url)
-  service.photo.attach(io: file, filename: 'user.png', content_type: 'image/png')
-  service.save
+  5.times do
+    url = 'https://this-person-does-not-exist.com/en'
+    doc = Nokogiri::HTML(URI.open(url).read)
+    src = doc.search('#avatar').first['src']
+    photo_url = "https://this-person-does-not-exist.com#{src}"
+    file = URI.open(photo_url)
+    service.photos.attach(io: file, filename: 'user.png', content_type: 'image/png')
+    service.save
+  end
 end
 
 puts "created #{Service.count} services!"
