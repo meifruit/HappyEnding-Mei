@@ -1,5 +1,6 @@
 .service-show-container {
   margin-top: 5rem;
+  height: 12000px;
 }
 
 .service-title {
@@ -39,7 +40,7 @@
   display: flex;
   justify-content: center;
   min-height: 100;
-  height: 250px;
+  height: 40vh;
   width: 400px;
   border-radius: 8px;
   background-position: center;
@@ -88,10 +89,16 @@
   margin: 0;
 }
 
-.map-description {
-  display: grid;
-  grid-template-columns: 60% 40%;
+strong {
+  font-family: $sub-headers-font;
+  color: $font-subtitle-two-color;
+  font-size: xx-large;
 }
+
+// .map-description {
+//   display: grid;
+//   grid-template-columns: 60% 40%;
+// }
 
 .profile-description {
   display: grid;
@@ -113,6 +120,12 @@ h5 {
   text-align: center;
   justify-items: center;
   padding-left: 0;
+  padding-top: 1rem;
+}
+
+.profile-icon .fa-solid{
+  top: 50%;
+ text-align: center;
 }
 
 .profile-detail {
@@ -128,6 +141,8 @@ h5 {
 
 .to-booking {
   vertical-align: middle;
+  position: sticky;
+  top: 0;
 }
 
 .booking-card {
@@ -135,12 +150,20 @@ h5 {
   box-shadow: 0 0px 16px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   border-color: 1px ;
-  height: 60vh;
+  height: 70vh;
   padding: 2rem;
   display: flex;
   flex-direction: column;
   background-color: white;
+  position: sticky;
+  top: 0;
+  // align-self: auto;
 }
+
+.map-show {
+  align-content: center;
+}
+
 
 
 .price-booking {
@@ -222,4 +245,8 @@ h5 {
   .services {
     grid-template-columns: 60% 40%;
   }
+}
+
+.lol {
+  height: 800px;
 }
