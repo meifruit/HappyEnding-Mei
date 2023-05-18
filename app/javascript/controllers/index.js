@@ -12,3 +12,9 @@ application.register("hello", HelloController)
 
 import MapController from "./map_controller"
 application.register("map", MapController)
+
+import ReviewPopupController from "./review_popup_controller"
+application.register("review-popup", ReviewPopupController)
+
+import TooltipController from "./tooltip_controller"
+application.register("tooltip", TooltipController)
