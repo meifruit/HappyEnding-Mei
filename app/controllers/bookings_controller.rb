@@ -12,6 +12,7 @@ class BookingsController < ApplicationController
       booking.status != "pending"
     end
     @pending_bookings = current_user.bookings.pending
+    @review = Review.new
   end
 
   def create
