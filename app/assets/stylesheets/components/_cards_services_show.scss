@@ -32,7 +32,6 @@
 
 .map-profile {
   display: flex;
-  justify-content: center;
 }
 
 .service-show-photo {
@@ -46,6 +45,8 @@
   background-repeat: no-repeat;
   background-size: auto;
   background-size: cover;
+  scroll-snap-align: start;
+  transition: all 0.2s;
 }
 
 

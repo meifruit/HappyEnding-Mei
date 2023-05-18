@@ -5,9 +5,13 @@
   <div class="service-container">
     <div class="left">
       <div class="map-profile">
-        <%# '<div class="service-show-photo" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= @service.photo.attached? ? cl_image_path(@service.photo.key) : "https://i1.sndcdn.com/avatars-UaKAHbGfoeypwb8c-qkYTMg-t240x240.jpg"%>
-      </div>
-      '
+        <ul class="profile-cards">
+          <% if @service.photos.attached?%>
+          <% @service.photos.each do |photo| %>
+          <li class="service-show-photo"><%= cl_image_tag(photo.key) %></li>
+            <% end %>
+          <% end %>
+        </ul>
     </div>
     <div class="detail">
       <div class="name">
@@ -85,14 +89,4 @@
       </div>
     </div>
   </div>
-</div>
-<div class="photos">
-  <% if @service.photos.attached?%>
-    <div class=service-show-photos>
-      <% @service.photos.each do |photo| %>
-        <div><%= cl_image_tag(photo.key) %></div>
-      <% end %>
-    </div>
-  <% end %>
-</div>
 </div>
