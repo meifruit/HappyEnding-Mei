@@ -14,7 +14,8 @@ Rails.application.routes.draw do
       get 'toggle_favorite', to: "services#toggle_favorite"
     end
     resources :bookings, except: [:destroy, :index, :edit, :update]
-    resources :reviews, only: :create
+    resources :reviews, only: [:create]
   end
+  resources :reviews, only: [:destroy]
   resources :bookings, only: [:destroy, :index, :edit, :update]
 end
