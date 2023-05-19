@@ -7,11 +7,12 @@
 #   Character.create(name: "Luke", movie: movies.first)
 require 'open-uri'
 require 'nokogiri'
+require 'fileutils'
 puts "cleaning users and bookings..."
 Booking.destroy_all
 User.destroy_all
 
-gender = ["male", "female"]
+genders = ["male", "female"]
 title_service = ["Boyfriend", "Girlfriend", "Soulmate", "Datemate", "Datefusion", "Heartsync", "LoveHaven", "RomanceRevolution"]
 location = ["Shibuya, Tokyo", "Roppongi, Tokyo", "Shinjuku, Tokyo", "Okinawa", "Osaka", "Kyoto", "Hiroshima"]
 status = ["pending", "rejected", "accepted", "completed"]
@@ -40,12 +41,12 @@ john = User.create(
     password: "123456"
   )
 
-5.times do
+20.times do
   user = User.create!(
     name: Faker::Name.name,
     interest: Faker::Hobby.activity,
     location: location.sample,
-    sex: gender.sample,
+    sex: genders.sample,
     description: Faker::Quote.most_interesting_man_in_the_world,
     age: rand(18..50),
     email: Faker::Internet.email,
@@ -60,18 +61,36 @@ john = User.create(
     description: user.description,
     price: rand(100..500)
   )
+
+    # gender options: 'all' or 'male' or 'female'
+    gender = 'all'
+    # age options: 'all' or '12-18' or '19-25' or '26-35' or '35-50' or '50+'
+    age = '26-35'
+    # ethnicity options: 'all' or 'asian' or 'white' or 'black' or 'indian' or 'middle_eastern' or 'latino_hispanic'
+    ethnicity = 'all'
+
   5.times do
-    url = 'https://this-person-does-not-exist.com/en'
-    doc = Nokogiri::HTML(URI.open(url).read)
-    src = doc.search('#avatar').first['src']
+    url = "https://this-person-does-not-exist.com/new?gender=#{gender}&age=#{age}&etnic=#{ethnicity}"
+    json = URI.open(url).read
+    src = JSON.parse(json)['src']
     photo_url = "https://this-person-does-not-exist.com#{src}"
     file = URI.open(photo_url)
     service.photos.attach(io: file, filename: 'user.png', content_type: 'image/png')
     service.save
   end
+
+  5.times do
+    Review.create!(
+    rating: rand(3..5),
+    comment: Faker::Restaurant.review,
+    user: User.where.not(id: user).sample,
+    service: service
+    )
+  end
 end
 
 puts "created #{Service.count} services!"
+puts "created #{Review.count} reviews!"
 
 Service.all.each do |service|
   rand(1..4).times do
@@ -192,3 +211,90 @@ Booking.create!(
 )
 
 puts "created #{Booking.count} bookings!"
+
+
+doug = User.create(
+  name: "Doug Berkley",
+  interest: Faker::Hobby.activity,
+  location: "Meguro,Tokyo",
+  sex: "male",
+  description: Faker::Quote.most_interesting_man_in_the_world,
+  age: 30,
+  email: "doug@email.com",
+  password: "123456"
+)
+
+
+puts "created Doug"
+
+
+dougservice = Service.new(
+  user: doug,
+  title: "Soul mate",
+  description: Faker::Quote.most_interesting_man_in_the_world,
+  price: 99
+)
+
+
+dougservice.photos.attach(io: File.open("./app/assets/images/doug/IMG_5519.jpg"), filename: 'user.png', content_type: 'image/png')
+dougservice.save
+dougservice.photos.attach(io: File.open("./app/assets/images/doug/IMG_5520.jpg"), filename: 'user.png', content_type: 'image/png')
+dougservice.save
+dougservice.photos.attach(io: File.open("./app/assets/images/doug/IMG_5521.jpg"), filename: 'user.png', content_type: 'image/png')
+dougservice.save
+dougservice.photos.attach(io: File.open("./app/assets/images/doug/IMG_5522.jpg"), filename: 'user.png', content_type: 'image/png')
+dougservice.save
+dougservice.photos.attach(io: File.open("./app/assets/images/doug/IMG_5523.jpg"), filename: 'user.png', content_type: 'image/png')
+dougservice.save
+
+
+puts "created Doug service"
+
+5.times do
+Review.create!(
+  rating: rand(3..5),
+  comment: Faker::Restaurant.review,
+  user: User.where.not(id: doug).sample,
+  service: dougservice
+  )
+end
+
+  puts "created Doug review"
+
+  gui = User.create(
+    name: "Gui",
+    interest: Faker::Hobby.activity,
+    location: "Meguro,Tokyo",
+    sex: "male",
+    description: Faker::Quote.most_interesting_man_in_the_world,
+    age: 20,
+    email: "gui@email.com",
+    password: "123456"
+  )
+
+
+  puts "created Gui"
+
+
+    guiservice = Service.new(
+    user: gui,
+    title: "Soul mate",
+    description: Faker::Quote.most_interesting_man_in_the_world,
+    price: 98
+  )
+
+
+  guiservice.photos.attach(io: File.open("./app/assets/images/doug/91a29db5-b76f-4fa2-92b5-e7c8be4f3914.jpg"), filename: 'user.png', content_type: 'image/png')
+  guiservice.save
+
+
+  puts "created Gui service"
+
+  5.times do
+  Review.create!(
+    rating: rand(3..5),
+    comment: Faker::Restaurant.review,
+    user: User.where.not(id: gui).sample,
+    service: guiservice
+    )
+  end
