@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   resources :services, only: [:index, :show, :new, :create, :destroy] do
     member do
-      post 'toggle_favorite', to: "services#toggle_favorite"
+      get 'toggle_favorite', to: "services#toggle_favorite"
     end
     resources :bookings, except: [:destroy, :index, :edit, :update]
     resources :reviews, only: :create
