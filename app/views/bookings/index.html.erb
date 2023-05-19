@@ -20,7 +20,7 @@
         <% @pending_bookings.each do |booking| %>
           <div class="card-product">
             <% if booking.service.photos.first %>
-              <%= image_tag cl_image_tag(booking.service.photos.first) %>
+              <%= cl_image_tag(booking.service.photos.first.key) %>
             <% else %>
               <%= image_tag "icon.png" %>
             <% end %>
@@ -54,8 +54,8 @@
           <% @current_user_bookings.each do |booking| %>
             <% if booking.status != "pending" %>
               <div class="card-product">
-                <% if booking.service.photos.first.key %>
-                  <%= image_tag cl_image_path(booking.service.photos.first.key) %>
+                <% if booking.service.photos.first %>
+                  <%= cl_image_tag(booking.service.photos.first.key) %>
                 <% else %>
                   <%= image_tag "icon.png" %>
                 <% end %>
@@ -84,7 +84,7 @@
                   <% elsif booking.status == "completed" %>
                     <%# need to change here as review button or something %>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Add Review
+                      Add Review
                     </button>
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                       <div class="modal-dialog">
@@ -95,9 +95,9 @@
                           </div>
                           <div class="modal-body">
                             <%= simple_form_for([booking.service, @review] ) do |f| %>
-                                <%= f.input :rating %>
-                                <%= f.input :comment %>
-                                <%= f.submit %>
+                              <%= f.input :rating %>
+                              <%= f.input :comment %>
+                              <%= f.submit %>
                             <% end %>
                           </div>
                           <div class="modal-footer">
