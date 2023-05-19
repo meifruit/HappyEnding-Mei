@@ -3,7 +3,7 @@
     <li class="nav-item" role="presentation">
       <span class="nav-link tab-underlined active" id="bookings-tab" data-bs-toggle="tab" data-bs-target="#bookings-tab-pane" role="tab" aria-controls="bookings-tab-pane" aria-selected="true">Your Bookings</span>
     </li>
-    <li class="nav-item" role="presentation">
+    <li class="nav-item" role="presentation" style="margin-right: 42px">
       <span class="nav-link tab-underlined" id="insert-tab" data-bs-toggle="tab" data-bs-target="#insert-tab-pane" role="tab" aria-controls="insert-tab-pane" aria-selected="false">Bookings in progress</span>
     </li>
     <li class="nav-item" role="presentation">
@@ -31,8 +31,8 @@
                 <h5><%= "#{booking.service.user.location}" %></h5>
               </div>
               <div>
-                <p>From <%= "#{booking.start_date}" %></p>
-                <p>To <%= "#{booking.end_date}" %></p>
+                <p>From <%=  booking.start_date.strftime("%B %d, %Y at %I:%M %p") %></p>
+                <p>To <%= booking.end_date.strftime("%B %d, %Y at %I:%M %p") %></p>
               </div>
               <h4><%= booking.status%></h4>
               <% if policy(booking).edit? %>
@@ -66,8 +66,8 @@
                     <h5><%= "#{booking.service.user.location}" %></h5>
                   </div>
                   <div>
-                    <p>From <%= "#{booking.start_date}" %></p>
-                    <p>To <%= "#{booking.end_date}" %></p>
+                    <p>From <%= booking.start_date.strftime("%B %d, %Y at %I:%M %p") %></p>
+                    <p>To <%= booking.end_date.strftime("%B %d, %Y at %I:%M %p") %></p>
                   </div>
                   <h4><%= booking.status%></h4>
                   <% if booking.status == "accepted"%>
@@ -88,16 +88,16 @@
                     </button>
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                       <div class="modal-dialog">
-                        <div class="modal-content">
+                        <div class="modal-content container-review">
                           <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Review</h1>
+                            <h1 class="modal-title fs-2" id="exampleModalLabel">Review</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
                           <div class="modal-body">
                             <%= simple_form_for([booking.service, @review] ) do |f| %>
                               <%= f.input :rating %>
                               <%= f.input :comment %>
-                              <%= f.submit %>
+                              <%= f.submit class: "btn btn-flat" %>
                             <% end %>
                           </div>
                           <div class="modal-footer">
@@ -125,8 +125,8 @@
               <div class="card-product-infos">
                 <h5>Booked by <%= "#{booking.user.name}" %></h5>
                 <div>
-                  <p>From <%= "#{booking.start_date}" %></p>
-                  <p>To <%= "#{booking.end_date}" %></p>
+                  <p>From <%= booking.start_date.strftime("%B %d, %Y at %I:%M %p") %></p>
+                  <p>To <%= booking.end_date.strftime("%B %d, %Y at %I:%M %p") %></p>
                 </div>
                 <h4><%= booking.status%></h4>
                 <div>
@@ -153,8 +153,8 @@
                 <div class="card-product-infos">
                   <h5>Booked by <%= "#{booking.user.name}" %></h5>
                   <div>
-                    <p>From <%= "#{booking.start_date}" %></p>
-                    <p>To <%= "#{booking.end_date}" %></p>
+                    <p>From <%= booking.start_date.strftime("%B %d, %Y at %I:%M %p") %></p>
+                    <p>To <%= booking.end_date.strftime("%B %d, %Y at %I:%M %p") %></p>
                   </div>
                   <h4><%= booking.status%></h4>
                   <div class="m-4">

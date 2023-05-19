@@ -5,19 +5,30 @@ class ReviewsController < ApplicationController
     @review.service = @service
     @review.user = current_user
     authorize @review
-    if @review.save
-      redirect_to service_path(@service)
-    else
-      @reviews = @service.reviews
-      @booking = Booking.new
-      @current_user_bookings = policy_scope(Booking.where(user: current_user))
-      @none_rejected_bookings = current_user.bookings_as_owner.pending
-      @other_bookings = current_user.bookings_as_owner do |booking|
-        booking.status != "pending"
+    respond_to do |format|
+      if @review.save
+        format.html { redirect_to service_path(@service) }
+        format.json
+      else
+        @reviews = @service.reviews
+        @booking = Booking.new
+        @current_user_bookings = policy_scope(Booking.where(user: current_user))
+        @none_rejected_bookings = current_user.bookings_as_owner.pending
+        @other_bookings = current_user.bookings_as_owner do |booking|
+          booking.status != "pending"
+        end
+        @pending_bookings = current_user.bookings.pending
+        format.html { render "bookings/index", status: :unprocessable_entity }
+        format.json
       end
-      @pending_bookings = current_user.bookings.pending
-      render "bookings/index", status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @review = Review.find(params[:id])
+    authorize @review
+    @review.destroy
+    redirect_to service_path(@review), status: :see_other
   end
 
   private

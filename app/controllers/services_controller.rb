@@ -21,6 +21,7 @@ class ServicesController < ApplicationController
   def show
     @service = Service.find(params[:id])
     @reviews = @service.reviews
+    @review = Review.new
     @booking = Booking.new
     authorize @service
     @marker = [{
@@ -47,8 +48,9 @@ class ServicesController < ApplicationController
 
   def destroy
     @service = Service.find(params[:id])
+    authorize @service
     @service.destroy
-    redirect_to bookings_path
+    redirect_to services_path
   end
 
   def toggle_favorite
