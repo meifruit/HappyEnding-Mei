@@ -1,4 +1,5 @@
 class ServicesController < ApplicationController
+  skip_after_action :verify_authorized, only: :wishlist
   def index
     @user = current_user
     @services = policy_scope(Service)
@@ -56,6 +57,13 @@ class ServicesController < ApplicationController
     @user = current_user
     @user.favorited?(@service) ? @user.unfavorite(@service) : @user.favorite(@service)
     redirect_to services_path
+  end
+
+  def wishlist
+    @service = Service.find_by(id: params[:id])
+    @services = current_user.favorited_services
+    @user = current_user
+    render :wishlist
   end
 
 private

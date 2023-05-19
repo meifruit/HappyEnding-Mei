@@ -17,6 +17,8 @@ Rails.application.routes.draw do
     resources :reviews, only: :create
   end
   resources :bookings, only: [:destroy, :index, :edit, :update]
+
+  get 'wishlist', to: 'services#wishlist', as: 'wishlist'
 end
 
 # create route
