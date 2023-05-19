@@ -46,8 +46,9 @@ class ServicesController < ApplicationController
 
   def destroy
     @service = Service.find(params[:id])
+    authorize @service
     @service.destroy
-    redirect_to bookings_path
+    redirect_to services_path
   end
 
   def toggle_favorite

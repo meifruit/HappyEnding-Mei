@@ -71,24 +71,38 @@
         <p>Location: <%= @service.user.location %></p>
       </div>
       <div class="to-booking">
-        <div class="booking-card">
-          <div class="price-booking">
-            <h5>$<%= @service.price %></h5>
-            <p>&emsp;per day</p>
-          </div>
-          <%= simple_form_for [@service, @booking], data: { controller: 'flatpickr' } do |f| %>
-            <%= f.input :start_date, as: :string, input_html: { data: { flatpickr_target: "startTime" }  }  %>
-            <%= f.input :end_date, as: :string, input_html: { data: { flatpickr_target: "endTime" }, id: 'end_time' } %>
-            <%= f.submit "Book!",class:"btn btn-flat" %>
-          <% end %>
-          <div class="price-detail">
-            <p class="text-muted">Price: $<%= @service.price %></p>
-            <p class="text-muted">Tax: $30</p>
-          </div>
-          <div class="final-price">
-            <b>Total with taxes $<%= @service.price + 30%></b>
+        <%# put condition for delete button %>
+        <% if current_user == @service.user %>
+          <div class="booking-card d-flex align-items-center justify-content-center">
+            <h3>You are the owner of this offer.</h3>
+            <p>If you want to check someone booked you, please go to bookings page!
+              <p>
+                <%= link_to "Go to bookings", bookings_path, class:"btn btn-primary" %>
+                <p></p>
+                <%= link_to service_path(@service), data: {turbo_method: :delete, turbo_confirm: "Delete this offer? Are you sure? 😢"} do %>
+                  <i class="fa-solid fa-trash-can" style="color: #00cecb;"></i>
+                <% end %>
+              </div>
+            <% else %>
+              <div class="booking-card" data-controller="price">
+                <div class="price-booking">
+                  <h5>$<span data-price-target="price"><%= @service.price %></span></h5>
+                  <p>&emsp;per day</p>
+                </div>
+                <%= simple_form_for [@service, @booking], data: { controller: 'flatpickr' } do |f| %>
+                  <%= f.input :start_date, as: :string, input_html: { data: { flatpickr_target: "startTime", action: "change->price#calculate", price_target: "startTime" }  }  %>
+                  <%= f.input :end_date, as: :string, input_html: { data: { flatpickr_target: "endTime", price_target: "endTime" }, id: 'end_time' } %>
+                  <%= f.submit "Book!",class:"btn btn-flat" %>
+                <% end %>
+                <div class="price-detail">
+                  <p class="text-muted">Price: $<span data-price-target="total"><%= @service.price %></span></p>
+                  <p class="text-muted">Tax: $30</p>
+                </div>
+                <div class="final-price">
+                  <b>Total with taxes $<span data-price-target="lasttotal"><%= @service.price + 30%></span></b>
+                </div>
+              </div>
+            <% end %>
           </div>
         </div>
       </div>
-    </div>
-  </div>

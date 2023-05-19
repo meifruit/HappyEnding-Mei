@@ -20,7 +20,7 @@
       <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
         <div class="container-fluid">
           <%= link_to services_path, class: "navbar-brand" do %>
-            <%= image_tag"couple-love-swirl-logo-vector-19990748-PhotoRoom.png" %>
+            <%= image_tag 'couple-love-swirl-logo-vector-19990748-PhotoRoom.png' %>
           <% end %>
 
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,7 +36,7 @@
                 <%= link_to "Messages", "#", class: "nav-link" %>
               </li>
               <li class="nav-item dropdown">
-                <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+              <%= image_tag current_user.photo.attached? ? cl_image_tag(current_user.photo.key) : 'tehepiyo.png', class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                   <%= link_to "Be a partner 👫", new_service_path, class: "dropdown-item" %>
                   <%= link_to "Bookings ❤️", bookings_path, class: "dropdown-item" %>

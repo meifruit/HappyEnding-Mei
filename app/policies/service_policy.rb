@@ -29,4 +29,8 @@ class ServicePolicy < ApplicationPolicy
   def toggle_favorite?
     true
   end
+
+  def destroy?
+    record.user == user
+  end
 end
