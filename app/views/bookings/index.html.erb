@@ -31,8 +31,8 @@
                 <h5><%= "#{booking.service.user.location}" %></h5>
               </div>
               <div>
-                <p>From <%= "#{booking.start_date}" %></p>
-                <p>To <%= "#{booking.end_date}" %></p>
+                <p>From <%=  booking.start_date.strftime("%B %d, %Y at %I:%M %p") %></p>
+                <p>To <%= booking.end_date.strftime("%B %d, %Y at %I:%M %p") %></p>
               </div>
               <h4><%= booking.status%></h4>
               <% if policy(booking).edit? %>
@@ -66,8 +66,8 @@
                     <h5><%= "#{booking.service.user.location}" %></h5>
                   </div>
                   <div>
-                    <p>From <%= "#{booking.start_date}" %></p>
-                    <p>To <%= "#{booking.end_date}" %></p>
+                    <p>From <%= booking.start_date.strftime("%B %d, %Y at %I:%M %p") %></p>
+                    <p>To <%= booking.end_date.strftime("%B %d, %Y at %I:%M %p") %></p>
                   </div>
                   <h4><%= booking.status%></h4>
                   <% if booking.status == "accepted"%>
@@ -125,8 +125,8 @@
               <div class="card-product-infos">
                 <h5>Booked by <%= "#{booking.user.name}" %></h5>
                 <div>
-                  <p>From <%= "#{booking.start_date}" %></p>
-                  <p>To <%= "#{booking.end_date}" %></p>
+                  <p>From <%= booking.start_date.strftime("%B %d, %Y at %I:%M %p") %></p>
+                  <p>To <%= booking.end_date.strftime("%B %d, %Y at %I:%M %p") %></p>
                 </div>
                 <h4><%= booking.status%></h4>
                 <div>
@@ -153,8 +153,8 @@
                 <div class="card-product-infos">
                   <h5>Booked by <%= "#{booking.user.name}" %></h5>
                   <div>
-                    <p>From <%= "#{booking.start_date}" %></p>
-                    <p>To <%= "#{booking.end_date}" %></p>
+                    <p>From <%= booking.start_date.strftime("%B %d, %Y at %I:%M %p") %></p>
+                    <p>To <%= booking.end_date.strftime("%B %d, %Y at %I:%M %p") %></p>
                   </div>
                   <h4><%= booking.status%></h4>
                   <div class="m-4">

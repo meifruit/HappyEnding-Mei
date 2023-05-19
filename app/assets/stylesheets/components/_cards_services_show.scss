@@ -1,41 +1,32 @@
 .service-show-container {
   margin-top: 5rem;
-  height: 12000px;
+  // height: 12000px;
 }
-
 .service-title {
   text-align: center;
 }
-
 .service-description {
   text-align: center;
 }
-
-
 .service-container {
   display: grid;
   grid-template-columns: 60% 40%;
 }
-
-
 .right {
   margin: 2rem;
-  height: 70vh;
-  display: grid;
+  // height: 1000px;
+  // display: grid;
 }
-
 .left {
   margin: 2rem;
   padding: 1rem;
   padding-top: 0;
-  height: 70vh;
+  // height: 70vh;
   justify-content: center;
 }
-
 .map-profile {
   display: flex;
 }
-
 .service-show-photo {
   display: flex;
   justify-content: center;
@@ -50,19 +41,15 @@
   scroll-snap-align: start;
   transition: all 0.2s;
 }
-
-
 .detail {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   padding: 1rem;
 }
-
 .name {
   text-align: center;
 }
-
 .age-gender {
   margin-top: 1rem;
   display: flex;
@@ -71,7 +58,6 @@
   border-bottom: 1px solid gray;
   margin-bottom: 2rem;
 }
-
 .small-card {
   box-shadow: 0 0px 16px rgba(0, 0, 0, 0.3);
   width: 20vh;
@@ -83,23 +69,19 @@
   border-color: gray;
   background-color: white;
 }
-
 .small-card p{
   font-weight: bold;
   margin: 0;
 }
-
 strong {
   font-family: $sub-headers-font;
   color: $font-subtitle-two-color;
   font-size: xx-large;
 }
-
 // .map-description {
 //   display: grid;
 //   grid-template-columns: 60% 40%;
 // }
-
 .profile-description {
   display: grid;
   margin-left: 0;
@@ -108,13 +90,9 @@ strong {
   row-gap: 1rem ;
   padding-left: 0;
 }
-
 h5 {
   margin-bottom: 0;
 }
-
-
-
 .profile-icon {
   margin: 0;
   text-align: center;
@@ -122,72 +100,56 @@ h5 {
   padding-left: 0;
   padding-top: 1rem;
 }
-
 .profile-icon .fa-solid{
   top: 50%;
- text-align: center;
+  text-align: center;
 }
-
 .profile-detail {
   text-align: left;
   vertical-align: middle;
   align-items: left ;
   margin-left: 1rem;
 }
-
 .profile-detail p {
   margin: 0;
 }
-
-.to-booking {
-  vertical-align: middle;
-  position: sticky;
-  top: 0;
-}
-
+// .to-booking {
+//   vertical-align: middle;
+//   position: sticky;
+//   top: 0;
+// }
 .booking-card {
-  margin: 2rem;
+  // margin: 2rem;
   box-shadow: 0 0px 16px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
-  border-color: 1px ;
   height: 70vh;
   padding: 2rem;
-  display: flex;
-  flex-direction: column;
+  // display: flex;
+  // flex-direction: column;
   background-color: white;
   position: sticky;
-  top: 0;
+  top: 80px;
   // align-self: auto;
 }
-
 .map-show {
   align-content: center;
 }
-
-
-
 .price-booking {
   display: flex;
 }
-
 .price-detail {
   margin-top: 1rem;
   border-bottom: 1px solid gray;
 }
-
 .final-price {
   margin-top: 1rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid gray;
 }
-
-
 .map  {
   align-items: center;
   object-fit: cover;
-
 }
-
 .btn-flat {
   color: white;
   padding: 0.35em 1.2em;
@@ -196,57 +158,44 @@ h5 {
   background: #00CECB;
   transition: background 0.3s ease;
 }
-
 .address {
   margin-top: 1rem;
 }
-
 .map-show {
   border-radius: 8px;
 }
-
 .booking-card:hover {
   transition: 0.2s ease-out;
   transform: translateY(-8px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
-
 // Smallest device
 @media (min-width: 370px) {
   .service-container {
     grid-template-columns: 1fr;
-
   }
 }
-
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
   .service-container {
     grid-template-columns: 1fr;
   }
 }
-
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
   .service-container {
     grid-template-columns: 60% 40%;
   }
 }
-
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
   .service-container {
     grid-template-columns: 60% 40%;
   }
 }
-
 // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
   .services {
     grid-template-columns: 60% 40%;
   }
-}
-
-.lol {
-  height: 800px;
 }
