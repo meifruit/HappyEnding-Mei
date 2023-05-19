@@ -19,7 +19,7 @@
         <h1>Partners you booked</h1>
         <% @pending_bookings.each do |booking| %>
           <div class="card-product">
-            <% if booking.service.photos.first.key %>
+            <% if booking.service.photos.first %>
               <%= cl_image_tag(booking.service.photos.first.key) %>
             <% else %>
               <%= image_tag "icon.png" %>
@@ -54,7 +54,7 @@
           <% @current_user_bookings.each do |booking| %>
             <% if booking.status != "pending" %>
               <div class="card-product">
-                <% if booking.service.photos.first.key %>
+                <% if booking.service.photos.first %>
                   <%= cl_image_tag(booking.service.photos.first.key) %>
                 <% else %>
                   <%= image_tag "icon.png" %>
