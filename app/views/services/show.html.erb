@@ -52,14 +52,11 @@
           </div>
         </div>
       </div>
-      <div class="container" data-controller="review" >
+      <div class="container-review" data-controller="review" >
         <div class="reviews" data-review-target='items'>
           <h1> <%= @reviews.length %> Reviews </h1>
           <% @reviews.each do |review| %>
-            <h3> <%= review.user.name  %> </h3>
-            <p> 5/<%=review.rating%> <%= '❤️' * review.rating %> </p>
-            <p> <%= review.comment  %> </p>
-            <br>
+            <%= render "reviews/review", review: review %>
           <% end %>
         </div>
         <%= render "reviews/form", service: @service, review: Review.new %>
