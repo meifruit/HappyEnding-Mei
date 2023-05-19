@@ -14,8 +14,22 @@ User.destroy_all
 gender = ["male", "female"]
 title_service = ["Boyfriend", "Girlfriend", "Soulmate", "Datemate", "Datefusion", "Heartsync", "LoveHaven", "RomanceRevolution"]
 location = ["Shibuya, Tokyo", "Roppongi, Tokyo", "Shinjuku, Tokyo", "Okinawa", "Osaka", "Kyoto", "Hiroshima"]
-status = ["unbooked", "pending", "rejected", "accepted", "completed"]
-User.create(
+status = ["pending", "rejected", "accepted", "completed"]
+
+testuser = User.create(
+  name: "testuser",
+  interest: "human observation",
+  location: "Meguro,Tokyo",
+  sex: "male",
+  description: Faker::Quote.most_interesting_man_in_the_world,
+  age: 20,
+  email: "test@email.com",
+  password: "123456"
+)
+
+puts "created test user"
+
+john = User.create(
     name: "John Doe",
     interest: "Writing",
     location: "Meguro,Tokyo",
@@ -70,5 +84,111 @@ Service.all.each do |service|
     )
   end
 end
+
+testservice = Service.new(
+  user: testuser,
+  title: "for test",
+  description: Faker::Quote.most_interesting_man_in_the_world,
+  price: rand(100..500)
+)
+
+testurl = 'https://this-person-does-not-exist.com/en'
+testdoc = Nokogiri::HTML(URI.open(testurl).read)
+testsrc = testdoc.search('#avatar').first['src']
+testphoto_url = "https://this-person-does-not-exist.com#{testsrc}"
+testfile = URI.open(testphoto_url)
+testservice.photos.attach(io: testfile, filename: 'user.png', content_type: 'image/png')
+testservice.save
+
+puts "created test service"
+
+johnservice = Service.new(
+  user: john,
+  title: "for John test",
+  description: Faker::Quote.most_interesting_man_in_the_world,
+  price: rand(100..500)
+)
+
+testurl = 'https://this-person-does-not-exist.com/en'
+testdoc = Nokogiri::HTML(URI.open(testurl).read)
+testsrc = testdoc.search('#avatar').first['src']
+testphoto_url = "https://this-person-does-not-exist.com#{testsrc}"
+testfile = URI.open(testphoto_url)
+johnservice.photos.attach(io: testfile, filename: 'user.png', content_type: 'image/png')
+johnservice.save
+
+puts "created John service"
+
+Booking.create!(
+  user: john,
+  service:testservice,
+  status: "pending",
+  start_date: Date.today + rand(1..3),
+  end_date: Date.today + rand(4..6)
+)
+
+Booking.create!(
+  user: User.where.not(id: testservice.user).sample,
+  service:testservice,
+  status: "pending",
+  start_date: Date.today + rand(1..3),
+  end_date: Date.today + rand(4..6)
+)
+
+Booking.create!(
+  user: User.where.not(id: testservice.user).sample,
+  service:testservice,
+  status: "rejected",
+  start_date: Date.today + rand(1..3),
+  end_date: Date.today + rand(4..6)
+)
+
+Booking.create!(
+  user: User.where.not(id: testservice.user).sample,
+  service:testservice,
+  status: "accepted",
+  start_date: Date.today + rand(1..3),
+  end_date: Date.today + rand(4..6)
+)
+
+  Booking.create!(
+    user: testuser,
+    service: Service.where.not(user_id: testuser).sample,
+    status: "accepted",
+    start_date: Date.today + rand(1..3),
+    end_date: Date.today + rand(4..6)
+)
+
+Booking.create!(
+  user: testuser,
+  service: Service.where.not(user_id: testuser).sample,
+  status: "pending",
+  start_date: Date.today + rand(1..3),
+  end_date: Date.today + rand(4..6)
+)
+
+Booking.create!(
+  user: testuser,
+  service: johnservice,
+  status: "pending",
+  start_date: Date.today + rand(1..3),
+  end_date: Date.today + rand(4..6)
+)
+
+Booking.create!(
+  user: testuser,
+  service: Service.where.not(user_id: testuser).sample,
+  status: "rejected",
+  start_date: Date.today + rand(1..3),
+  end_date: Date.today + rand(4..6)
+)
+
+Booking.create!(
+  user: testuser,
+  service: Service.where.not(user_id: testuser).sample,
+  status: "completed",
+  start_date: Date.today + rand(1..3),
+  end_date: Date.today + rand(4..6)
+)
 
 puts "created #{Booking.count} bookings!"
