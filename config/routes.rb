@@ -18,3 +18,10 @@ Rails.application.routes.draw do
   end
   resources :bookings, only: [:destroy, :index, :edit, :update]
 end
+
+# create route
+# create action for route wishlist in services controller
+# load all users favorites into the instance variable
+# create a view for the wishlist
+# render list partial
+# add link to navbar
