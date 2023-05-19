@@ -17,9 +17,6 @@ application.register("map", MapController)
 import PriceController from "./price_controller"
 application.register("price", PriceController)
 
-// import ReviewPopupController from "./review_popup_controller"
-// application.register("review-popup", ReviewPopupController)
-
 import ReviewController from "./review_controller"
 application.register("review", ReviewController)
 
