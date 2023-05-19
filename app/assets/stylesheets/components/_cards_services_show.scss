@@ -1,6 +1,6 @@
 .service-show-container {
   margin-top: 5rem;
-  // height: 12000px;
+  height: 100vwpx;
 }
 .service-title {
   text-align: center;
@@ -69,7 +69,8 @@
   border-color: gray;
   background-color: white;
 }
-.small-card p{
+
+.small-card p {
   font-weight: bold;
   margin: 0;
 }
@@ -87,7 +88,7 @@ strong {
   margin-left: 0;
   grid-template-columns: 30% 70%;
   grid-template-rows: 1fr 1fr 1fr;
-  row-gap: 1rem ;
+  row-gap: 1rem;
   padding-left: 0;
 }
 h5 {
@@ -100,14 +101,15 @@ h5 {
   padding-left: 0;
   padding-top: 1rem;
 }
-.profile-icon .fa-solid{
+
+.profile-icon .fa-solid {
   top: 50%;
   text-align: center;
 }
 .profile-detail {
   text-align: left;
   vertical-align: middle;
-  align-items: left ;
+  align-items: left;
   margin-left: 1rem;
 }
 .profile-detail p {
@@ -122,7 +124,8 @@ h5 {
   // margin: 2rem;
   box-shadow: 0 0px 16px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
-  height: 70vh;
+  border-color: 1px;
+  height: 90%;
   padding: 2rem;
   // display: flex;
   // flex-direction: column;
@@ -146,7 +149,8 @@ h5 {
   padding-bottom: 1rem;
   border-bottom: 1px solid gray;
 }
-.map  {
+
+.map {
   align-items: center;
   object-fit: cover;
 }
@@ -154,7 +158,7 @@ h5 {
   color: white;
   padding: 0.35em 1.2em;
   border-radius: 0.12em;
-  margin:0 0.3em 0.3em 0;
+  margin: 0 0.3em 0.3em 0;
   background: #00CECB;
   transition: background 0.3s ease;
 }

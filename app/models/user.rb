@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :services, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :bookings_as_owner, through: :services, source: :bookings
+  has_one_attached :photo
 
   validates :name, presence: true
   validates :email, uniqueness: true, presence: true
