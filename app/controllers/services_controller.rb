@@ -20,6 +20,7 @@ class ServicesController < ApplicationController
   def show
     @service = Service.find(params[:id])
     @reviews = @service.reviews
+    @review = Review.new
     @booking = Booking.new
     authorize @service
     @marker = [{
